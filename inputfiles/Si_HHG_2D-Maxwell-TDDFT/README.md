@@ -4,7 +4,7 @@
     - [1] S. Yamada and K. Yabana, Phys. Rev. B 103, 155426 (2021).
     
 - Version of SALMON
-    - SALMON v.2.0.1 or later.
+    - SALMON v.2.0.1.
 
 - System
     - Crystalline Si film with the thickness of 0.543 nm.
