@@ -1,0 +1,91 @@
+!!! SALMON v.2.0.1
+
+&units
+  unit_system='A_eV_fs'
+/
+
+&calculation
+!  theory='DFT'
+  theory='TDDFT_pulse'
+/
+
+&control
+  sysname = 'Si'
+/
+
+&parallel
+  nproc_k=128
+  nproc_ob = 1
+  nproc_rgrid = 1,1,1
+/
+
+&analysis
+  yn_out_dos='y'
+  nenergy = 3000
+  de = 0.01  
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&pseudo
+  iZatom(1)=14
+! wget https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/LDA_TM.psps/14/14si.pspnc
+  file_pseudo(1)='14si.pspnc'
+  Lmax_ps(1)=2
+  Lloc_ps(1)=2
+/
+
+&scf
+  ncg = 4
+  nscf = 200
+  threshold = 1d-9
+!  method_init_wf = 'random'
+/
+
+&rgrid
+  num_rgrid=16,16,16
+/
+
+&kgrid
+  num_kgrid=24,24,24
+/
+
+&tgrid
+  dt=1.25d-3
+  Nt=25000
+/
+
+&emfield
+  trans_longi='2d'
+  ae_shape1 = 'Acos6'
+  I_wcm2_1 = 1e12
+  tw1 = 30.d0
+  omega1 = 1.5d0
+  epdir_re1 = 1.d0,0.d0,0.d0
+/
+
+&maxwell
+  film_thickness = 5.43 ! d=a
+/
+
+&system
+  yn_periodic = 'y'
+  al = 5.43, 5.43, 5.43
+  nstate = 32
+  nelem = 1
+  natom = 8
+  nelec = 32
+/
+
+&atomic_coor
+ 'Si'   2.8846875   2.8846875   2.8846875   1
+ 'Si'   4.2421875   4.2421875   4.2421875   1
+ 'Si'   0.1696875   2.8846875   0.1696875   1
+ 'Si'   2.8846875   0.1696875   0.1696875   1
+ 'Si'   0.1696875   0.1696875   2.8846875   1
+ 'Si'   1.5271875   4.2421875   1.5271875   1
+ 'Si'   4.2421875   1.5271875   1.5271875   1
+ 'Si'   1.5271875   1.5271875   4.2421875   1
+/
