@@ -10,7 +10,7 @@
     - Crystalline Si film with the thickness of 0.543 nm.
     
 - Purpose
-    - For calculating HHG spectra in Fig. 2(a) of [1].
+    - For calculating HHG spectrum in Fig. 2(a) of [1].
 
 - Method
     - 2D Maxwell-TDDFT (2D approximation) method [1].
