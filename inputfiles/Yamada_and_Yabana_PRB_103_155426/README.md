@@ -1,7 +1,7 @@
 # Si, HHG, 2D Maxwell-TDDFT method
 
 - Publication information
-    - [1] S. Yamada and K. Yabana, Phys. Rev. B 103, 155426 (2021).
+    - [1] S. Yamada and K. Yabana, "Determining the optimum thickness for high harmonic generation from nanoscale thin films: An ab initio computational study", Phys. Rev. B 103, 155426 (2021). DOI: 10.1103/PhysRevB.103.155426
     
 - Version of SALMON
     - SALMON v.2.0.1.
