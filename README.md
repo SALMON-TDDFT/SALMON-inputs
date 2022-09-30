@@ -11,4 +11,5 @@ To add new input files, please encapsulate them in a new directory under `inputf
 - Method
 - Other information (optional)
 
+The name of the new directory should correspond to `Publication information`.
 You can also attach supplemental files such as SALMON output files or figures.
