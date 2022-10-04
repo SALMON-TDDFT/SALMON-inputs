@@ -16,4 +16,4 @@
     - 2D Maxwell-TDDFT (2D approximation) method [1].
 
 - Other information
-    - Calculation time ~ 26 minutes (Oakforest-PACS computer, 128 nodes).
+    - Calculation time ~ 30 minutes (Oakforest-PACS computer, 128 nodes).
