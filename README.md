@@ -11,8 +11,8 @@ To add new input files, please encapsulate them in a new directory under `inputf
 - Method
 - Other information (optional)
 
-The name of the new directory should correspond to "Publication information".
-The format of directry name should be `<surname of 1st author>_<abbreviation of journal>_<volulme>_<page>_<year>`.
+The name of the new directory should correspond to "Publication information". The format of directry name should be `<surname of 1st author>_<abbreviation of journal>_<volulme>_<page>_<year>`.
+
 Example:   
 * [1] S. Yamada and K. Yabana, Phys. Rev. B 103, 155426 (2021). --> `Yamada_PRB_103_155426_2021`
 
