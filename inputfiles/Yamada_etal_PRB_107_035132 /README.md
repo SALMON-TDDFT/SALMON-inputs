@@ -16,4 +16,5 @@
     - Multiscale Maxwell-TDDFT method.
 
 - Other information
+    - Details of files: input.dat = SALMON input file. Si_rps.dat = pseudopotential file. sym.dat = data file for the symmetry option.
     - Calculation time ~ 4.4 hours (Fugaku computer, 1280 nodes).
