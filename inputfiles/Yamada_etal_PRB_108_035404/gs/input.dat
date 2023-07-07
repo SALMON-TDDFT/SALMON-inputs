@@ -1,0 +1,86 @@
+&calculation
+  theory='dft'
+!  theory='tddft_pulse'
+/
+
+&parallel
+   nproc_k = 256
+   nproc_ob = 8
+   nproc_rgrid(1)= 1
+   nproc_rgrid(2)= 1
+   nproc_rgrid(3)= 1
+/
+
+&control
+  sysname = 'WSe2'
+!  yn_restart = 'y'
+!  directory_read_data = 'checkpoint_rt_004000/'
+!  checkpoint_interval = 10000
+/
+
+&tgrid
+  dt=0.0005
+  nt=200000
+/
+
+&emfield
+  ae_shape1 = 'input'
+  file_input1='Ac.dat'
+/
+
+&units
+  unit_system = 'A_eV_fs'
+/
+
+&scf
+  method_init_wf = 'random'
+  nscf = 1000
+  method_mixing ='simple'
+  mixrate = 0.1
+  threshold=1.0d-8
+/
+
+&analysis
+  projection_option='gs'
+  out_projection_step=1000
+  yn_out_dos = 'y'
+  yn_out_dos_set_fe_origin = 'y'
+  out_magnetization_step = 140000
+/
+
+&system
+  yn_periodic = 'y'
+  al_vec1 =  3.3200000,   0.0000000000,   0.00000000
+  al_vec2 =  1.6600000,   2.8752043406,   0.00000000
+  al_vec3 =  0.0000000,   0.0000000000,   23.0000000
+  nelec = 24
+  nstate = 36 
+  nelem = 2
+  natom = 3
+  spin  = 'noncollinear'
+  yn_spinorbit = 'y'
+/
+
+&pseudo
+  izatom = 74,34
+  file_pseudo = 'W_CA19.vps','Se_CA19.vps'
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 16, 16, 110
+/
+
+&kgrid
+  num_kgrid = 16, 16, 1
+/
+
+&atomic_coor
+W      0.000000000         0.0000000000         0.000000000   1
+Se     1.660000000         0.9584014469         1.670580626   2
+Se     1.660000000         0.9584014469        -1.670580626   2
+/
+
