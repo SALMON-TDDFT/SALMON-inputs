@@ -11,6 +11,8 @@ To add new input files, please encapsulate them in a new directory under `inputf
 - Method
 - Other information (optional)
 
+The title of README should be `[system], [purpose], [method]`.
+
 The name of the new directory should correspond to "Publication information". The format of directory name is `[surname of 1st author][year]_[abbreviation of journal][volume]_[page]`.
 
 Example:   
