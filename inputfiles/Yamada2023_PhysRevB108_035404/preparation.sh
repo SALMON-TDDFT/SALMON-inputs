@@ -1,11 +1,7 @@
 tw1=0.0 
 tw2=10.0 # pulse duration of the probe pulse (see input_template.dat) 
 tw_calc=30.0 # calculation time from the probe incidence
-
-###########
-
 dt=0.0005 # time step size (see input_template.dat)
-dir_res_org=../gs/restart # directory for GS data
 
 ###########
 
@@ -16,7 +12,7 @@ wget https://www.openmx-square.org/vps_pao2019/Se/Se_CA19.vps
 cp *.vps ./gs/
 cp *.vps Ac.dat ./pump/
 cd ./pump/
-ln -s $dir_res_org
+ln -s ../gs/data_for_restart restart
 cd ..
 
 : > log
@@ -46,7 +42,7 @@ for i in {0..20}; do
     cd $dir
     find -type l | xargs rm -f
     if [ ! -e restart ]; then
-	ln -s $dir_res_org
+	ln -s ../gs/data_for_restart restart
 	if [ "${dir_res}" != "restart" ]; then
 	    ln -s ../pump/${dir_res}
 	fi
