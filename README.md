@@ -1,5 +1,5 @@
 # SALMON-inputs
-Database for SALMON input files
+Database for SALMON input files used in published papers
 
 ## Requirements
 To add new input file(s), please encapsulate them in a new directory under `inputfiles/` directory with a README file containing the following information:
