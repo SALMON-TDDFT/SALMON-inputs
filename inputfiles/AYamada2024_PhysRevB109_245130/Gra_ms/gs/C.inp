@@ -1,0 +1,68 @@
+&calculation
+  theory = 'dft'  
+/
+
+&control
+  sysname = 'C'
+/
+
+&parallel
+  process_allocation = 'orbital_sequential'
+  nproc_k  =  128
+  nproc_ob =  1
+  nproc_rgrid = 1, 1, 1
+/
+
+&units
+  unit_system='A_eV_fs'
+/
+
+
+&system
+  yn_periodic = 'y'
+  al = 6.69600190969200d0, 4.2539179247280d0, 2.4560013453240d0  ![A]
+  nstate = 32
+  nelec = 32
+  nelem = 1
+  natom = 8
+  yn_symmetry = 'yyn'
+/
+
+&pseudo
+  izatom(1) = 6
+  file_pseudo(1) = './C_rps.dat'
+  lloc_ps(1) = 1
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 32, 20, 16
+/
+
+&kgrid
+  num_kgrid = 0, 0, 0
+  file_kw = "kpoint041632144.dat"
+/
+
+&scf
+  ncg = 5
+  nscf = 250
+  threshold=1d-11
+  nmemory_mb = 4
+  alpha_mb = 0.30d0
+/
+
+&atomic_red_coor
+  'C'	0.0000	0.0000	0.0000	1
+  'C'	0.0000	0.1667	0.5000	1
+  'C'	0.0000	0.5000	0.5000	1
+  'C'	0.0000	0.6667	0.0000	1
+  'C'	0.5000	0.0000	0.0000	1
+  'C'	0.5000	0.3333	0.0000	1
+  'C'	0.5000	0.5000	0.5000	1
+  'C'	0.5000	0.8333	0.5000	1
+/
+

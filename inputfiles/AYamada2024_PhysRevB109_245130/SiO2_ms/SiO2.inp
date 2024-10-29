@@ -1,0 +1,110 @@
+&calculation
+  theory = 'multi_scale_maxwell_tddft'
+/
+
+&control
+  sysname = 'SiO2'
+/
+
+&parallel
+  process_allocation = 'grid_sequential'
+  nproc_k  = 64
+  nproc_ob = 1
+  nproc_rgrid = 1, 2, 1
+/
+
+&units
+  unit_system='A_eV_fs'
+/
+
+&system
+  yn_periodic = 'y'
+  al = 4.913357384280d0, 8.51018557085248d0, 5.40515497851379d0
+  nstate = 64
+  nelec  = 96
+  nelem  = 2
+  natom  = 18
+/
+
+
+&pseudo
+  izatom(1)=14
+!-- psp8 pseudopotential from abinit web-site --
+  file_pseudo(1) = './Si.psp8'
+  lloc_ps(1)=4
+  izatom(2)=8
+  file_pseudo(2) = './O.psp8'
+  lloc_ps(2)=4
+/
+
+&functional
+  xc ='TBmBJ'
+  cval=1.00d0
+/
+
+&rgrid
+  num_rgrid = 28,50,32
+/
+
+&kgrid
+  num_kgrid = 4,4,4
+/
+
+&tgrid
+ nt=60000
+ dt=0.0005d0
+/
+
+&propagation
+!--if high intensity --
+  n_hamil = 8
+/
+
+&emfield
+  ae_shape1 = 'Acos2'
+! -- change intensity : from 1d9 to 1d17 W/cm2--
+  I_wcm2_1  = 1d15
+  tw1       = 20.0d0
+  omega1    = 1.55d0
+  epdir_re1 = 0d0, 0d0, 1d0
+/
+
+&multiscale
+  fdtddim = '1d'
+  twod_shape = 'periodic'
+  nx_m = 20
+  ny_m = 1
+  hx_m = 100d0
+  hy_m = 100d0
+  hz_m = 100d0
+  nxvacl_m = 2000
+  nxvacr_m = 2000
+/
+
+&maxwell
+  boundary_em(1,1) = 'abc'
+  boundary_em(1,2) = 'abc'
+/
+
+
+&atomic_red_coor
+'Si'    .9701   .5000     .0000    1
+'Si'    .2649   .7350     .6667    1
+'Si'    .2649   .2650     .3333    1
+'O'     .7798   .6338     .1191    2
+'O'     .5608   .7068     .5476    2
+'O'     .1594   .5730     .7858    2
+'O'     .1594   .4270     .2142    2
+'O'     .5608   .2932     .4524    2
+'O'     .7798   .3662     .8809    2
+'Si'    .4701   .0000     .0000    1
+'Si'    .7649   .2350     .6667    1
+'Si'    .7649   .7650     .3333    1
+'O'     .2798   .1338     .1191    2
+'O'     .0608   .2068     .5476    2
+'O'     .6594   .0730     .7858    2
+'O'     .6594   .9270     .2142    2
+'O'     .0608   .7932     .4524    2
+'O'     .2798   .8662     .8809    2
+/
+
