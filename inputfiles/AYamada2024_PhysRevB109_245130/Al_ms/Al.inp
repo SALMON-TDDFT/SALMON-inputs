@@ -1,0 +1,93 @@
+&calculation
+  theory = 'multi_scale_maxwell_tddft'
+/
+
+&control
+  sysname = 'Al'
+/
+
+&parallel
+  process_allocation = 'grid_sequential'
+  yn_ffte = 'y'
+  nproc_k  =  66
+  nproc_ob =  1
+  nproc_rgrid = 1, 1, 1
+/
+
+&units
+  unit_system='A_eV_fs'
+/
+
+&system
+  yn_periodic = 'y'
+  al = 4.0493998528d0,  4.0493998528d0,  4.0493998528d0
+  nstate = 8
+  nelec  = 12
+  nelem  = 1
+  natom  = 4
+  temperature_k = 300d0
+/
+
+
+&pseudo
+  izatom(1)=13
+!-- psp8 pseudopotential from abinit web-site --
+  file_pseudo(1) = './Al.psp8'
+  lloc_ps(1)=4
+/
+
+&functional
+  xc ='PZ'
+/
+
+&rgrid
+  num_rgrid = 24, 24, 24
+/
+
+&kgrid
+  num_kgrid = 16,16,44
+/
+
+&tgrid
+ nt=80000
+ dt=0.0005d0
+/
+
+&propagation
+!--if high intensity --
+  n_hamil = 8
+/
+
+&emfield
+  ae_shape1 = 'Acos2'
+! -- change intensity : from 1d9 to 1d17 W/cm2--
+  I_wcm2_1 = 1d15
+  tw1 = 20.0d0
+  omega1    = 1.55d0
+  epdir_re1 = 0d0, 0d0, 1d0
+/
+
+&multiscale
+  fdtddim = '1d'
+  twod_shape = 'periodic'
+  nx_m = 20
+  ny_m = 1
+  hx_m = 25d0
+  hy_m = 25d0
+  hz_m = 25d0
+  nxvacl_m = 6000
+  nxvacr_m = 6000
+/
+
+&maxwell
+  boundary_em(1,1) = 'abc'
+  boundary_em(1,2) = 'abc'
+/
+
+&atomic_coor
+'Al'   0.000000000     0.000000000     0.000000000  1
+'Al'   0.000000000     2.024699926     2.024699926  1
+'Al'   2.024699926     0.000000000     2.024699926  1
+'Al'   2.024699926     2.024699926     0.000000000  1
+/
+

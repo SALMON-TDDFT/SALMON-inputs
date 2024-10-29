@@ -1,0 +1,85 @@
+&calculation
+  theory = 'multi_scale_maxwell_tddft'
+/
+
+&control
+  sysname = 'C'
+/
+
+&parallel
+  process_allocation = 'orbital_sequential'
+  nproc_k  =  72
+  nproc_ob =  2
+  nproc_rgrid = 1, 1, 1
+/
+
+&units
+  unit_system='A_eV_fs'
+/
+
+
+&system
+  yn_periodic = 'y'
+  al = 6.69600190969200d0, 4.2539179247280d0, 2.4560013453240d0  ![A]
+  nstate = 32
+  nelec = 32
+  nelem = 1
+  natom = 8
+  yn_symmetry = 'yyn'
+/
+
+&pseudo
+  izatom(1) = 6
+  file_pseudo(1) = './C_rps.dat'
+  lloc_ps(1) = 1
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 32, 20, 16
+/
+
+&kgrid
+  num_kgrid = 0, 0, 0
+  file_kw = "kpoint041632144.dat"
+/
+
+&tgrid
+nt=100000
+dt=0.0005d0
+/
+
+&propagation
+!--if high intensity --
+  n_hamil = 8
+/
+
+&emfield
+  ae_shape1 = 'Acos2'
+! -- change intensity : from 1d9 to 1d17 W/cm2--
+  I_wcm2_1 = 1d15
+  tw1 = 20.0d0
+  omega1    = 1.55d0
+  epdir_re1 = 0d0, 0d0, 1d0
+/
+
+&multiscale
+  fdtddim = '1d'
+  twod_shape = 'periodic'
+  nx_m = 20
+  ny_m = 1
+  hx_m = 100d0
+  hy_m = 100d0
+  hz_m = 100d0
+  nxvacl_m = 3000
+  nxvacr_m = 3000
+/
+
+&maxwell
+  boundary_em(1,1) = 'abc'
+  boundary_em(1,2) = 'abc'
+/
+
