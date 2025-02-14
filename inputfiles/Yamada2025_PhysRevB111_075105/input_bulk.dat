@@ -1,0 +1,91 @@
+&calculation
+ theory='tddft_pulse'
+/
+
+&control
+  sysname = 'Si'
+!  yn_restart='y'
+/
+
+&units
+  unit_system = 'A_eV_fs'
+/
+
+&parallel
+  nproc_k=512
+  nproc_ob=1
+  nproc_rgrid=1,1,1
+/
+
+&system
+  yn_periodic = 'y'
+  al = 5.43, 5.43, 5.43
+  nstate = 80
+  nelec= 32
+  nelem = 1
+  natom = 8
+  temperature = 1
+/
+
+&pseudo
+  izatom(1) = 14
+  file_pseudo(1) = './Si_rps.dat'
+  lmax_ps(1) = 2
+  lloc_ps(1) = 2
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  dl = 0.339375, 0.339375, 0.339375
+/
+
+&kgrid
+  num_kgrid = 16,16,16
+/
+
+&tgrid
+  nt = 8000
+  dt = 0.0025
+/
+
+&scf
+!  method_init_density = 'read_dns_cube'
+  nscf_init_mix_zero = 100
+  nscf_init_redistribution = 0
+  method_mixing='simple'
+  mixrate = 0.01
+  ncg = 4
+  nscf = 5000
+  threshold = 1.d-9
+/
+
+&emfield
+  ae_shape1 = 'Acos2'
+  I_wcm2_1 = 2e11
+  tw1 = 20.0000
+  omega1 = 1.2
+  epdir_re1 = 1.0, 0.0, 0.0
+/
+
+&analysis
+  nenergy = 5000
+  de = 0.01
+  yn_out_dos_set_fe_origin = 'y'
+  yn_lr_w0_correction = 'y'
+!  projection_option='gs'
+!  yn_out_dns = 'y'
+/
+
+&atomic_red_coor
+  'Si'	.0	.0	.0	1
+  'Si'	.25	.25	.25	1
+  'Si'	.5	.0	.5	1
+  'Si'	.0	.5	.5	1
+  'Si'	.5	.5	.0	1
+  'Si'	.75	.25	.75	1
+  'Si'	.25	.75	.75	1
+  'Si'	.75	.75	.25	1
+/
