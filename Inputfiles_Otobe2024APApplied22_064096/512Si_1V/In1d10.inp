@@ -1,0 +1,109 @@
+!########################################################################################!
+! Excercise 04: Ground state of crystalline silicon(periodic solids)                     !
+!----------------------------------------------------------------------------------------!
+! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
+!   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+! * Input format consists of group of keywords like:                                     !
+!     &group                                                                             !
+!       input keyword = xxx                                                              !
+!     /                                                                                  !
+!   (see chapter: 'List of input keywords' in the manual)                                !
+!----------------------------------------------------------------------------------------!
+! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+!   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+!   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+!   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
+!########################################################################################!
+
+&calculation
+  !type of theory
+  theory = 'tddft_pulse'
+/
+
+&control
+  !common name of output files
+  sysname = 'Si_0.2_In1d10'
+  directory_read_data = '../../GS_2/data_for_restart/'
+  time_shutdown = 255600
+!  yn_restart = 'y'
+!  yn_self_checkpoint = 'y'
+/
+
+&units
+  !units used in input and output files
+  unit_system = 'A_eV_fs'
+/
+&parallel
+  nproc_k=1
+  nproc_ob=292
+  nproc_rgrid=1,1,1
+/
+&system
+  !periodic boundary condition
+  yn_periodic = 'y'
+  temperature_k=300d0
+  !grid box size(x,y,z)
+  al(1:3) = 21.724d0  21.724d0  21.724d0
+
+  !number of elements, atoms, electrons and states(bands)
+  nelem  = 1
+  natom  = 511
+  nelec  = 2044
+  nstate = 2044
+  file_atom_coor = '../../GS_2/data_for_restart/atomic_coor.txt '
+/
+
+&pseudo
+  !name of input pseudo potential file
+  file_pseudo(1) = './Si_rps.dat'
+  !atomic number of element
+  izatom(1) = 14
+  !angular momentum of pseudopotential that will be treated as local
+  lmax_ps(1) = 2
+  lloc_ps(1) = 2
+  !--- Caution -------------------------------------------!
+  ! Index must correspond to those in &atomic_red_coor.   !
+  !-------------------------------------------------------!
+/
+ 
+&functional
+  !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+  xc = 'PZ' 
+/
+ 
+&rgrid 
+  !number of spatial grids(x,y,z)
+  num_rgrid(1:3) = 98, 98, 98
+/
+  
+&kgrid
+  !number of k-points(x,y,z)
+  num_kgrid(1:3) = 1, 1, 1
+/
+&tgrid
+  nt = 50000  
+  dt = 0.001
+/
+&scf
+  !maximum number of scf iteration and threshold of convergence
+  nscf      = 4000
+  method_mixing = 'simple'
+  nscf_init_redistribution = 50
+  mixrate = 0.01d0
+  threshold = 1.0d-9
+  method_init_density = 'wf'
+/
+&emfield
+  ae_shape1 = 'Acos4'
+  I_wcm2_1 = 1d10
+  omega1 = 1.2d0
+  tw1    = 40d0
+  epdir_re1 = 0., 0., 1.
+/
+&analysis
+projection_option = 'td'
+out_projection_step = 1000
+yn_out_dns_rt = 'y'
+out_dns_rt_step = 5000
+/
+ 
