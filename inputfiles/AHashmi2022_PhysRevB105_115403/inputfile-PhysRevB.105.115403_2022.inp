@@ -1,0 +1,93 @@
+&calculation
+   theory='tddft_pulse'
+/
+
+&parallel
+   nproc_ob = 16
+   nproc_k = 128
+   nproc_rgrid(1)= 1
+   nproc_rgrid(2)= 1
+   nproc_rgrid(3)= 1
+/
+
+&control
+  sysname = 'ML'
+  !yn_restart = 'y'
+  !yn_self_checkpoint = 'y'
+  !directory_read_data = 'checkpoint_rt_000060/'
+  !checkpoint_interval = 7000
+/
+
+&tgrid
+  dt=0.0005
+  nt=40000
+/
+
+&maxwell
+film_thickness = 23.00
+/
+
+&emfield
+  trans_longi = '2d'
+  ae_shape1 = 'Acos4'
+  I_wcm2_1 = 1d10
+  omega1 = 0.4
+  tw1 = 10.34
+  epdir_re1 = 1, 0, 0
+  phi_cep1 = 0.0
+/
+
+&analysis
+  projection_option = 'gs'
+  out_projection_step = 1000
+  nenergy = 5000
+  de = 0.01
+/
+
+&units
+  unit_system = 'A_eV_fs'
+/
+
+&scf
+  method_init_wf = 'random'
+  nscf = 500
+  method_mixing ='simple_dm'
+  mixrate = 0.05
+  threshold=1.0d-8
+/
+&system
+  yn_periodic = 'y'
+  al_vec1 =  3.3200000   0.0000000   0.0000000
+  al_vec2 = -1.6600000   2.8752043   0.0000000
+  al_vec3 =  0.0000000   0.0000000   23.0000000
+  nelec = 24
+  nstate = 36
+  nelem = 2
+  natom = 3
+  yn_spinorbit = 'y'
+  spin = 'noncollinear'
+/
+
+&pseudo
+  izatom = 74,34
+  file_pseudo = 'W_PBE19.vps','Se_PBE19.vps'
+  lloc_ps = 3,2
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 16, 16, 110
+/
+
+&kgrid
+  num_kgrid = 15, 15, 1
+/
+
+&atomic_coor
+W      0.000000000         1.916802912         9.000000000   1
+Se     1.660000016         0.958401456         7.329419911   2
+Se     1.660000016         0.958401456        10.670580626   2
+/
