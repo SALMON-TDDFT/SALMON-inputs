@@ -20,5 +20,5 @@
   - * Symmetry option is used using input file of "sym.dat". "sym.dat" is prepared by utility program at (SALMON code)/utility/sym/.
   - * psp8 pseudopotential from abinit web-site is used.
   - * After the ground state calculation (in "gs" directory), calculate Maxwell-TDDFT. 
-  - * Calculation time was 6 hours by Fugaku computer 720 nodes.
+  - * Calculation time was 6 hours by Fugaku computer 720 nodes (4 processes/node).
 
