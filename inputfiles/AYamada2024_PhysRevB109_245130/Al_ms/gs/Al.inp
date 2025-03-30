@@ -24,6 +24,7 @@
   nelec  = 12
   nelem  = 1
   natom  = 4
+  yn_symmetry = 'yyn'
   temperature_k = 300d0
 /
 
