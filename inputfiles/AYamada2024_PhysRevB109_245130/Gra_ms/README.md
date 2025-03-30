@@ -15,10 +15,9 @@
 - Method
   - Maxwell-TDDFT 
 
-
 - Other information
   - * User-defined k-point file (kpoint041632144.dat) is used.
   - * Symmetry option is used using input file of "sym.dat". "sym.dat" is prepared by utility program at (SALMON code)/utility/sym/.
   - * After the ground state calculation (in "gs" directory), calculate Maxwell-TDDFT. 
-  - * Calculation time was 4.5 hours by Fugaku computer 720 nodes.
+  - * Calculation time was 4.5 hours by Fugaku computer 720 nodes (4 processes/node).
 
