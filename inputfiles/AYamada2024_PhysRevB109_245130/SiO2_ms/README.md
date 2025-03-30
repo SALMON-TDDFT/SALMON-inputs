@@ -18,5 +18,5 @@
 - Other information
   - * psp8 pseudopotential from abinit web-site is used.
   - * After the ground state calculation (in "gs" directory), calculate Maxwell-TDDFT. 
-  - * Calculation time was 5.5 hours by Fugaku computer 640 nodes.
+  - * Calculation time was 5.5 hours by Fugaku computer 640 nodes (4 processes/node).
 
