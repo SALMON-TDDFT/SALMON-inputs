@@ -1,0 +1,98 @@
+&calculation
+  theory='tddft_pulse'
+/
+
+&control
+ sysname = 'bi'
+! directory_read_data = 'checkpoint_rt_040000/'
+! yn_self_checkpoint = 'y'
+! checkpoint_interval = 10000
+! yn_restart = 'y'
+/
+
+&units
+  unit_system = 'A_eV_fs'
+/
+
+&parallel
+   nproc_ob = 16
+   nproc_k =  128 
+   nproc_rgrid(1)= 1
+   nproc_rgrid(2)= 1
+   nproc_rgrid(3)= 1
+/
+
+&system
+  yn_periodic = 'y'
+  al =  4.160000  4.3300000  20.0000000000  
+  nelec = 40  ! (14*2+6*2)
+  nstate = 60
+  yn_spinorbit = 'y'
+  spin = 'noncollinear'
+  nelem = 2
+  natom = 4
+/
+
+&pseudo
+  izatom = 50,16
+  file_pseudo = 'Sn.upf','S.upf'
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 26, 26, 120
+/
+
+&kgrid
+  num_kgrid = 35, 35, 1
+/
+
+&tgrid
+  dt = 0.0005
+  nt = 65000
+/
+
+&maxwell
+  film_thickness = 20.00
+/
+
+&emfield
+  trans_longi = '2d'
+  ae_shape1 = 'Acos4'
+  I_wcm2_1 = 5E10
+  omega1 = 0.40
+  tw1 = 31.01751   !(10.33917*3)
+  epdir_re1 = 1, 0, 0
+  phi_cep1 = 0.25
+/
+
+&scf
+  method_init_wf = 'random'
+  method_mixing ='simple_dm'
+  mixrate = 0.05
+  nscf = 35
+  threshold=1.0d-8
+/
+
+&analysis
+   projection_option = 'gs'
+   out_projection_step = 100
+   nenergy = 50000
+   out_rt_spin_step = 100
+   yn_out_mag_decomposed_rt = 'y'
+/
+
+!&propagation
+!  propagator = aetrs
+!  n_hamil = 10
+!/
+
+&atomic_red_coor
+  Sn  0.500000000         0.792339981         0.430770010   1
+  Sn  0.000000000         0.292340010         0.569230020   1
+  S   0.000000000         0.345149994         0.438549995   2
+  S   0.500000000         0.845149994         0.561450005   2
+/
