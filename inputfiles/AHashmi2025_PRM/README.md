@@ -1,7 +1,7 @@
 # SnS monolayer, (TDDFT)
 
 - **Publication information**  
-  A. Hashmi, et al., *Phys. Rev. Materials* (2025). DOI: [to be added]
+  A. Hashmi, et al., Phys. Rev. Materials 9, 104003 (2025). DOI: 10.1103/jm56-qldh
 
 - **Version of SALMON**  
   SALMON v2.0.0
