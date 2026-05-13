@@ -1,0 +1,102 @@
+&calculation
+  theory='tddft_pulse'
+/
+
+&parallel
+   nproc_k = 64
+   nproc_ob = 8
+   nproc_rgrid(1)= 1
+   nproc_rgrid(2)= 1
+   nproc_rgrid(3)= 1
+/
+
+&control
+  sysname = 'wse2'
+!  yn_restart = 'y'
+!  yn_self_checkpoint = 'y'
+!  directory_read_data = 'checkpoint_rt_000060/'
+  checkpoint_interval = 40000
+/
+
+&units
+  unit_system = 'A_eV_fs'
+/
+
+&tgrid
+  dt=0.0005
+  nt=40000
+/
+
+&emfield
+  ae_shape1 = 'Acos4'
+  epdir_re1 = 1.0, 0.0, 0.0
+  epdir_im1 = 0.0, 1.0, 0.0
+  omega1 = 1.5
+  tw1 = 20.0
+  I_wcm2_1 = 1e12
+/
+
+&scf
+  method_init_wf = 'random'
+  nscf = 3000
+  ncg = 3
+  method_mixing ='simple_dm'
+  mixrate = 0.1
+  threshold = 1.0d-11
+/
+
+&analysis
+  yn_out_dos = 'y'
+  yn_out_dos_set_fe_origin = 'y'
+  out_rt_spin_step = 200
+!  yn_out_mag_decomposed_rt='y'
+!  yn_out_mag_micro_rt='y'
+!  yn_out_spin_current_decomposed='y'
+!  yn_out_spin_current_micro='y'
+/
+
+&system
+  yn_periodic = 'y'
+  al_vec1 =  6.5858998299         0.0000000000         0.0000000000 
+  al_vec2 = -3.2929499149         5.7035565594         0.0000000000
+  al_vec3 =  0.0000000000         0.0000000000        27.0000000000
+  nelec = 96 ! 12*4 + 6*8
+  nstate = 128
+  nelem = 2
+  natom = 12
+  spin  = 'noncollinear'
+  yn_spinorbit = 'y'
+/
+
+&pseudo
+  izatom = 74,34
+  file_pseudo = 'W_CA19.vps','Se_CA19.vps'
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 32, 32, 135
+/
+
+&kgrid
+  num_kgrid = 8, 8, 1
+/
+
+&atomic_red_coor
+ W     0.500270009         0.500259995         0.344500005    1
+ W     0.499740005         0.000010014         0.344500005    1
+ W     0.999989986         0.499729991         0.344500005    1
+ W     0.000000000         0.000000000         0.344469994    1
+ Se    0.833880007         0.666666687         0.407350004    2
+ Se    0.333333313         0.167213321         0.407350004    2
+ Se    0.832786679         0.166119993         0.407350004    2
+ Se    0.833333313         0.666666687         0.281549990    2
+ Se    0.333333313         0.166666627         0.281549990    2
+ Se    0.833333373         0.166666687         0.281549990    2
+ Se    0.333333343         0.666666687         0.407299995    2
+ Se    0.333333343         0.666666687         0.281549990    2
+/
+
