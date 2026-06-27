@@ -1,0 +1,91 @@
+&calculation
+  theory='dft'
+!  theory='tddft_pulse'
+!  theory='tddft_response'
+/
+
+&parallel
+  nproc_k=1
+  nproc_ob=32
+  nproc_rgrid=6,6,6
+/
+
+&control
+  sysname = 'Si'
+  write_gs_restart_data=no
+/
+
+&units
+  unit_system = 'a.u.'
+/
+
+&system
+  yn_periodic = 'y'
+  al = 123.12,123.12,123.12
+  nstate = 27648
+  nelec = 55296
+  nelem = 1
+  natom = 13824
+!  temperature_k = 300.0
+  file_atom_coor = 'atom.dat'
+/
+
+&pseudo
+  izatom(1) = 14
+  file_pseudo(1) = './Si_rps.dat'
+  lmax_ps(1) = 2
+  lloc_ps(1) = 2
+!  izatom(2) = 15
+!  file_pseudo(2) = '15-P.LDA.fhi'
+!  lmax_ps(2) = 3
+!  lloc_ps(2) = 2
+/
+
+&functional
+  xc = 'PZ'
+/
+
+&rgrid
+  num_rgrid = 144,144,144
+/
+
+&kgrid
+  num_kgrid = 1, 1, 1
+/
+
+&tgrid
+  nt = 10000
+!  nt = 20000
+  dt = 0.05
+/
+
+&scf
+!  nscf_init_redistribution=100
+!  method_init_density=read_dns_cube
+  method_init_wf = random
+  method_init_density = 'pp'
+  yn_preconditioning=y
+  method_mixing='simple'
+  mixrate = 0.01
+  ncg = 1
+  nscf = 10
+  threshold = 1.d-9
+/
+
+&emfield
+!  ae_shape1 = 'impulse'
+!  ae_shape1 = 'Acos6'
+  ae_shape1 = 'Acos2'
+  I_wcm2_1 = 1e9
+!  I_wcm2_1 = 1e12
+  omega1 = 0.05696145187d0
+  tw1 = 441.195136248d0
+!  tw1 = 1000.0
+  epdir_re1 = 0., 0., 1.
+/
+
+&analysis
+  nenergy = 1000
+  de = 0.001
+  yn_out_dns=y
+/
