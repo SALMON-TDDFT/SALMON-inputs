@@ -1,0 +1,94 @@
+
+&calculation
+    theory = 'multi_scale_maxwell_tddft'
+/
+
+&control
+    sysname = 'TiO2'
+/
+
+&parallel
+    nproc_k = 4
+    nproc_ob = 1
+    nproc_rgrid(1) = 1
+    nproc_rgrid(2) = 1
+    nproc_rgrid(3) = 1
+/
+
+&units
+    unit_system = 'au'
+/
+
+&system
+    yn_periodic = 'y'
+    al(1:3) = 8.448d0, 8.448d0, 5.295d0
+    nelem = 2
+    natom = 6
+    nelec = 48
+    nstate = 48
+/
+
+&pseudo
+    file_pseudo(1) = './Ti.psp8'
+    izatom(1) = 22
+    file_pseudo(2) = './O.psp8'
+    izatom(2) = 8
+/
+
+&functional
+    xc = 'PZ'
+/
+
+&rgrid
+    num_rgrid(1:3) = 24, 24, 16
+/
+
+&kgrid
+    num_kgrid(1:3) = 4, 4, 6
+/
+
+&analysis
+    yn_out_dos = "y"
+    yn_out_dos_set_fe_origin = "y"
+/
+
+&tgrid
+    dt = 0.02d0
+    nt = 115000
+/
+
+&emfield
+    ae_shape1 = 'Acos2'
+    I_wcm2_1 = 1.000000e+12
+    tw1 =  2067.068667d0
+    omega1 =    0.042823d0
+    epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+/
+
+&multiscale
+
+    nx_m = 16
+    ny_m = 1
+    nz_m = 1
+
+    hx_m =   118.107883d0
+    hy_m = 50.0d0
+    hz_m = 50.0d0
+
+    nxvacl_m = 1000
+    nxvacr_m = 1000
+/
+
+&maxwell
+    boundary_em(1,1) = 'abc'
+    boundary_em(1,2) = 'abc'
+/
+
+&atomic_red_coor
+    'atom' 0.00 0.00 0.00 1
+    'atom' 0.50 0.50 0.50 1
+    'atom' 0.30 0.30 0.00 2
+    'atom' 0.69 0.69 0.00 2
+    'atom' 0.19 0.80 0.50 2
+    'atom' 0.80 0.19 0.50 2
+/
