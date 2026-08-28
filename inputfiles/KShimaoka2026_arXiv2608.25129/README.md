@@ -1,4 +1,4 @@
-# Silicon bulk with point defects, pulse irradiation, TDDFT
+# Titanium dioxide (TiO2)
 
 - Publication information
     - [1]  K. Shimaoka, Y. Kondo, K. Shibata, and M. Uemoto, "First-principles prediction of nonlinear optical response in TiO2 for high-power dielectric mirror applications"	arXiv:2608.25129
